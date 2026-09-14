@@ -8,11 +8,28 @@ export default function Home(){
         <a className="border border-white px-8 py-3 hover:bg-white hover:text-black transition-colors duration-300" href="#">VISITANOS</a>
       </section>
       <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black">
-        <div className="flex flex-col items-center gap-6 max-w-4x1">
+        <div className="flex flex-col items-center gap-6 max-w-4xl">
           <span className="text-sm font-semibold tracking-widest text-zinc-500">CONÓCENOS</span>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center">Bienvenidos a La Familia del Rey</h2>
         <p className="text-lg text-center max-w-2xl text-zinc-600">Un lugar para pertencer, crecer y compartir juntos.</p>
         <a className="border-b border-black pb-1 hover:text-zinc-500" href="#">CONOCE MÁS</a>
+        </div>
+      </section>
+      <section className="py-24 md:py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div>
+        <span className="text-sm font-semibold tracking-widest text-zinc-500">ULTIMO MENSAJE</span>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4"> Una palabra para tu vida</h2>
+        <p className="mt-4 text-lg text-zinc-600">Escucha nuestro mensaje más reciente.</p>
+          </div>
+            <div className="mt-12 aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
+              <span className="text-white text-4xl w-20 h-20 rounded-full border border-white flex items-center justify-center">▶</span>  
+            </div>
+          <div className="mt-6">
+              <h3 className="text-2xl font-bold">Título del mensaje</h3>
+              <p className="mt-2 text-zinc-500">Predicador · Fecha</p>
+              <a className="border-b border-black pb-1 hover:text-zinc-500 inline-block mt-4" href="#">VER MENSAJE</a>
+          </div>
         </div>
       </section>
     </main>
