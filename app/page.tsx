@@ -74,6 +74,35 @@ export default function Home(){
           </div>
         </div>
       </section>
+      <section className="py-24 md:py-32 px-6 bg-zinc-100 text-black">
+        <div className="max-w-6xl mx-auto">
+          <span className=" text-sm font-semibold inline-block text-zinc-500">NUESTROS MINISTERIOS</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Hay un lugar para ti</h2>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <div className="aspect-video bg-zinc-300"></div>
+                <div className="pt-6">
+                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
+                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
+                </div>
+            </div>
+            <div>
+              <div className="aspect-video bg-zinc-300"></div>
+                <div className="pt-6">
+                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
+                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
+                </div>
+            </div>
+            <div>
+              <div className="aspect-video bg-zinc-300"></div>
+                <div className="pt-6">
+                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
+                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     
   );
