@@ -1,7 +1,119 @@
+"use client";
+import { useState } from "react";
+import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake} from "lucide-react";
 export default function Home(){
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     
     <main className="min-h-screen">
+      <nav className="w-full bg-black text-white px-6 py-5">
+
+        <div className="max-w-6xl mx-auto flex text-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              className="md:hidden"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              ☰
+            </button>
+            
+
+            <a href="#">La Familia del Rey</a>
+          </div>
+            <div className="flex gap-8 items-center hidden md:flex">
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">INICIO</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">MENSAJES</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">EVENTOS</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">MINISTERIOS</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#visitanos">VISÍTANOS</a>
+              <a className="border border-white px-5 py-2 hover:bg-white hover:text-black transition-colors duration-300"href="#">DAR</a>
+            </div>
+            
+        </div>
+      </nav>
+      {menuOpen && (
+        <div className="fixed top-0 left-0 z-50 h-screen w-72 md:hidden bg-black text-white px-6 py-10">
+          <div className="flex flex-col gap-6 text-xl font-semibold">
+            <button className="md:hidden text-left"
+            onClick={() => setMenuOpen(!menuOpen)}
+            >
+              ✕
+              </button>
+            <a href="#">INICIO</a>
+            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              <div className="flex items-center gap-3">
+                <MessageCircle size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    MENSAJES
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Escucha nuestros mensajes más recientes.
+                  </p>
+                </div>
+              </div>
+            </a> 
+            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              <div className="flex items-center gap-3">
+                <CalendarDays size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    EVENTOS
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Conoce nuestros proximos eventos y actividades.
+                  </p>
+                </div>
+              </div>
+            </a>           
+            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              <div className="flex items-center gap-3">
+                <Users size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    MINISTERIOS
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Encuentra un lugar para crecer, conectar y servir.
+                  </p>
+                </div>
+              </div>
+            </a> 
+            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              <div className="flex items-center gap-3">
+                <MapPin size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    VISITANOS
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Conoce nuestros horarios y planifica una visita.
+                  </p>
+                </div>
+              </div>
+            </a> 
+            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              <div className="flex items-center gap-3">
+                <HeartHandshake size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    DAR
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Se parte de lo que Dios esta haciendo a traves de nuestra Iglesia.
+                  </p>
+                </div>
+              </div>
+            </a> 
+            
+          </div>
+        </div>
+      )}
       <section className="min-h-screen flex items-center justify-center bg-black text-white flex-col gap-6 px-6">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-center">La Familia del Rey</h1>
         <p className="text-xl text-center">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
