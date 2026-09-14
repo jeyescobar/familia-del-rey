@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
-import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake} from "lucide-react";
+import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake , ChevronDown} from "lucide-react";
+import Image from "next/image"
 export default function Home(){
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     
     <main className="min-h-screen">
-      <nav className="w-full bg-black text-white px-6 py-5">
+      <nav className="w-full bg-black/70 text-white px-6 py-5 sticky top-0 z-40 backdrop-blur-md">
 
         <div className="max-w-6xl mx-auto flex text-center justify-between">
           <div className="flex items-center gap-4">
@@ -114,10 +115,24 @@ export default function Home(){
           </div>
         </div>
       )}
-      <section className="min-h-screen flex items-center justify-center bg-black text-white flex-col gap-6 px-6">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-center">La Familia del Rey</h1>
-        <p className="text-xl text-center">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
-        <a className="border border-white px-8 py-3 hover:bg-white hover:text-black transition-colors duration-300" href="#visitanos">VISITANOS</a>
+
+      
+      <section className="relative min-h-[calc(100vh-72px)] flex items-center justify-center bg-black text-white flex-col gap-6 px-6 pt-24 pb-16">
+        <Image
+          src="/church-hero1.jpg"
+          alt="La Familia del Rey"
+          fill
+          className="object-cover object-center"
+        />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
+      <div className="relative z-10 flex flex-col items-center gap-6 text-center">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-center">La Familia del Rey</h1>
+        <p className="text-lg md:text-xl max-w-2xl text-white/90">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
+        <a className="inline-block bg-white text-black px-8 py-3 font-semibold hover:bg-black hover:text-white transition-colors duration-300">VISITANOS</a>
+      </div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70">
+        <ChevronDown size ={28} className="animate-bounce"/>
+      </div>
       </section>
       <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black">
         <div className="flex flex-col items-center gap-6 max-w-4xl">
