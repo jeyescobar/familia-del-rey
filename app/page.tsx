@@ -5,7 +5,7 @@ export default function Home(){
       <section className="min-h-screen flex items-center justify-center bg-black text-white flex-col gap-6 px-6">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-center">La Familia del Rey</h1>
         <p className="text-xl text-center">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
-        <a className="border border-white px-8 py-3 hover:bg-white hover:text-black transition-colors duration-300" href="#">VISITANOS</a>
+        <a className="border border-white px-8 py-3 hover:bg-white hover:text-black transition-colors duration-300" href="#visitanos">VISITANOS</a>
       </section>
       <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black">
         <div className="flex flex-col items-center gap-6 max-w-4xl">
@@ -101,6 +101,14 @@ export default function Home(){
                 </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="visitanos" className ="py-24 md:py-32 py-6 bg-black text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="text-sm font-semibold tracking-wides text-zinc-400 ">VISÍTANOS</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Queremos conocerte</h2>
+          <p className="text-lg mt-4 text-zinc-400 max-w-2xl mx-auto">Planifica tu visita y acompáñanos en nuestro próximo servicio.</p>
+          <a className="inline-block mt-8 bg-white text-black px-8 py-3 border border-white hover:bg-black hover:text-white transition-colors duration-300" href="#">PLANIFICA TU VISITA</a>
         </div>
       </section>
     </main>
