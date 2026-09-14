@@ -32,6 +32,48 @@ export default function Home(){
           </div>
         </div>
       </section>
+      <section className="py-24 md:py-32 px-6 bg-black text-white">
+        <div className="max-w-6xl mx-auto">
+          <span className="text-sm font-semibold tracking-widest text-zinc-400">PRÓXIMOS EVENTOS</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Conéctate con nuestra comunidad</h2>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+
+                <div className="pt-6">
+                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
+                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
+                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                </div>
+                
+            </div>
+            <div>
+              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+
+                <div className="pt-6">
+                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
+                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
+                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                </div>
+                
+            </div>
+            <div>
+              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+
+                <div className="pt-6">
+                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
+                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
+                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                </div>
+                
+            </div>
+
+          </div>
+        </div>
+      </section>
     </main>
     
   );
