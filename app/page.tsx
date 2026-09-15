@@ -4,6 +4,7 @@ import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake , Chevro
 import Image from "next/image"
 export default function Home(){
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("adoracion");
   return (
     
     <main className="min-h-screen">
@@ -134,14 +135,106 @@ export default function Home(){
         <ChevronDown size ={28} className="animate-bounce"/>
       </div>
       </section>
-      <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black">
-        <div className="flex flex-col items-center gap-6 max-w-4xl">
-          <span className="text-sm font-semibold tracking-widest text-zinc-500">CONÓCENOS</span>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center">Bienvenidos a La Familia del Rey</h2>
-        <p className="text-lg text-center max-w-2xl text-zinc-600">Un lugar para pertencer, crecer y compartir juntos.</p>
-        <a className="border-b border-black pb-1 hover:text-zinc-500" href="#">CONOCE MÁS</a>
+
+      <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black flex-col">
+        <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+              NUESTROS CULTOS
+        </h2>
+          <p className="mt-4 text-lg md:text-xl text-zinc-600">Hay un lugar para ti.</p>
+        <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col items-start gap-6">
+          <button onClick={() => setSelectedService("adoracion")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+            <span className="block text-sm font-semibold tracking-widest text-zinc-500">
+              Domingo
+            </span>
+
+            <span className="block text-2xl font-semibold mt-2">
+              CULTO DE ADORACIÓN 10:00 AM
+            </span>
+
+            <p className="text-zinc-600 mt-2">
+              Un tiempo para reunirnos como familia, adorar juntos y recibir la Palabra.
+            </p>
+          </button>
+
+          <button onClick={() => setSelectedService("escuela")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+            <span className="block text-sm font-semibold tracking-widest text-zinc-500">
+              Domingo
+            </span>
+
+            <span className="block text-2xl font-semibold mt-2">
+              ESCUELA BÍBLICA 9:00 AM
+            </span>
+
+            <p className="text-zinc-600 mt-2">
+              Un espacio para conocer más de la Palabra de Dios y crecer juntos en nuestra fe.
+            </p>
+          </button>
+          <button onClick={() => setSelectedService("oracion")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+            <span className="block text-sm font-semibold tracking-widest text-zinc-500">
+              Martes
+            </span>
+
+            <span className="block text-2xl font-semibold mt-2">
+              CULTO DE ORACIÓN 7:30 PM
+            </span>
+
+            <p className="text-zinc-600 mt-2">
+              Un tiempo para buscar a Dios juntos a través de la oración, la adoración y la Palabra.
+            </p>
+          </button>
+          <button onClick={() => setSelectedService("jovenes")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+            <span className="block text-sm font-semibold tracking-widest text-zinc-500">
+              Viernes · Fechas Seleccionadas
+            </span>
+
+            <span className="block text-2xl font-semibold mt-2">
+              CULTO DE JÓVENES 7:30 PM
+            </span>
+
+            <p className="text-zinc-600 mt-2">
+              Un espacio para que nuestros jóvenes conecten, crezcan en su fe y adoren a Dios juntos.
+            </p>
+          </button>
+          <button onClick={() => setSelectedService("matrimonios")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+            <span className="block text-sm font-semibold tracking-widest text-zinc-500">
+              Viernes · Fechas Seleccionadas
+            </span>
+
+            <span className="block text-2xl font-semibold mt-2">
+              CULTO DE MATRIMONIOS 7:30 PM
+            </span>
+
+            <p className="text-zinc-600 mt-2">
+              Un espacio para fortalecer los matrimonios, crecer juntos y construir familias centradas en Dios.
+            </p>
+          </button>
+          </div>
+          <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden md:ml-12">
+          <Image
+            src={
+              selectedService === "adoracion"
+                ? "/foto-adoracion.jpg"
+                : selectedService === "escuela"
+                ? "/foto-escuela-biblica.jpg"
+                : selectedService ==="oracion"
+                ? "/foto-culto-oracion.jpg"
+                : selectedService ==="jovenes"
+                ? "/foto-culto-jovenes.jpg"
+                : selectedService ==="matrimonios"
+                ? "/foto-culto-matrimonios.jpg"
+                : "/church.1.jpg"
+
+                
+            }
+            alt="La Familia del Rey"
+            fill
+            className="object-cover transition-transform duration-500 hover:scale-105"
+          />
+          </div>
         </div>
       </section>
+
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div>
