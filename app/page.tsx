@@ -522,58 +522,141 @@ export default function Home(){
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Hay un lugar para ti</h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <div className=" relative overflow-hidden aspect-video bg-zinc-300">
+              <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
                 <Image
                   src="/ministerio-1.jpg"
                   alt="Ministerio de La Familia del Rey"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-                <div className="pt-6">
-                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
-                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                  <h3 className="text-2xl font-bold tracking-tight">
+                    Nombre del ministerio
+                  </h3>
+
+                  <p className="mt-2 text-base md:text-lg text-zinc-200">
+                    Descripción del ministerio.
+                  </p>
                 </div>
+              </div>
             </div>
-            <div>
-              <div className="relative overflow-hidden aspect-video bg-zinc-300">
-                <Image
-                  src="/ministerio-2.jpg"
-                  alt="Ministerio de La Familia del Rey"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
+            <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
+              <Image
+                src="/ministerio-2.jpg"
+                alt="Ministerio de La Familia del Rey"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-2xl font-bold tracking-tight">
+                  Nombre del ministerio
+                </h3>
+
+                <p className="mt-2 text-base md:text-lg text-zinc-200">
+                  Descripción del ministerio.
+                </p>
               </div>
-                <div className="pt-6">
-                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
-                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
-                </div>
             </div>
-            <div>
-              <div className="relative overflow-hidden aspect-video bg-zinc-300">
-                <Image
-                  src="/ministerio-3.jpg"
-                  alt="Ministerio de La Familia del Rey"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
+            <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
+              <Image
+                src="/ministerio-3.jpg"
+                alt="Ministerio de La Familia del Rey"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-2xl font-bold tracking-tight">
+                  Nombre del ministerio
+                </h3>
+
+                <p className="mt-2 text-base md:text-lg text-zinc-200">
+                  Descripción del ministerio.
+                </p>
               </div>
-                <div className="pt-6">
-                  <h3 className ="text-2xl font-bold tracking-tight">Nombre del ministerio</h3>
-                  <p className="m-2 text-zinc-600 text-lg">Descripción del ministerio.</p>
-                </div>
+            </div>
+            <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
+              <Image
+                src="/ministerio-4.jpg"
+                alt="Ministerio de La Familia del Rey"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-2xl font-bold tracking-tight">
+                  Nombre del ministerio
+                </h3>
+
+                <p className="mt-2 text-base md:text-lg text-zinc-200">
+                  Descripción del ministerio.
+                </p>
+              </div>
+            </div>
+            <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
+              <Image
+                src="/ministerio-5.jpg"
+                alt="Ministerio de La Familia del Rey"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-2xl font-bold tracking-tight">
+                  Nombre del ministerio
+                </h3>
+
+                <p className="mt-2 text-base md:text-lg text-zinc-200">
+                  Descripción del ministerio.
+                </p>
+              </div>
+            </div>
+            <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
+              <Image
+                src="/ministerio-6.jpg"
+                alt="Ministerio de La Familia del Rey"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-2xl font-bold tracking-tight">
+                  Nombre del ministerio
+                </h3>
+
+                <p className="mt-2 text-base md:text-lg text-zinc-200">
+                  Descripción del ministerio.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="mt-12 text-center">
-            <a
-              href="/ministerios"
+          <div className="mt-12 txt-lg text-center">
+            <h3
+            
               className="inline-block border-b border-black pb-1 hover:text-zinc-500 transition-colors duration-300"
             >
-              VER TODOS LOS MINISTERIOS
-            </a>
+              Y MAS...
+            </h3>
           </div>
         </div>
       </section>
