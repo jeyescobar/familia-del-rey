@@ -1,10 +1,17 @@
 "use client";
-import { useState } from "react";
-import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake , ChevronDown} from "lucide-react";
+import { useEffect, useState } from "react";
+import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, ChevronDown} from "lucide-react";
 import Image from "next/image"
 export default function Home(){
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("adoracion");
+  useEffect(() => {
+  document.body.style.overflow = menuOpen ? "hidden" : "";
+
+  return () => {
+    document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
   return (
     
     <main className="min-h-screen">
@@ -24,25 +31,33 @@ export default function Home(){
           </div>
             <div className="flex gap-8 items-center hidden md:flex">
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#">INICIO</a>
-              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">MENSAJES</a>
-              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">EVENTOS</a>
-              <a className="hover:text-zinc-400 transition-colors duration-300" href="#">MINISTERIOS</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#cultos">CULTOS</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#mensaje">MENSAJES</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#eventos">EVENTOS</a>
+              <a className="hover:text-zinc-400 transition-colors duration-300" href="#ministerios">MINISTERIOS</a>
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#visitanos">VISÍTANOS</a>
               <a className="border border-white px-5 py-2 hover:bg-white hover:text-black transition-colors duration-300"href="#">DAR</a>
             </div>
             
         </div>
       </nav>
+
+        {/* menu open nav bar */}
       {menuOpen && (
-        <div className="fixed top-0 left-0 z-50 h-screen w-72 md:hidden bg-black text-white px-6 py-10">
+        <div className="overflow-y-auto fixed top-0 left-0 z-50 h-screen w-72 md:hidden bg-black text-white px-6 py-10">
           <div className="flex flex-col gap-6 text-xl font-semibold">
             <button className="md:hidden text-left"
             onClick={() => setMenuOpen(!menuOpen)}
             >
               ✕
               </button>
+
             <a href="#">INICIO</a>
-            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
+            <a href="#mensaje" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              
               <div className="flex items-center gap-3">
                 <MessageCircle size={22} />
                 <div>
@@ -55,8 +70,30 @@ export default function Home(){
                   </p>
                 </div>
               </div>
+            </a>
+
+            <a href="#cultos" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
+              <div className="flex items-center gap-3">
+                <Church size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    CULTOS
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Conoce nuestros horarios y cultos.
+                  </p>
+                </div>
+              </div>
             </a> 
-            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
+            <a href="#eventos" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
               <div className="flex items-center gap-3">
                 <CalendarDays size={22} />
                 <div>
@@ -69,8 +106,12 @@ export default function Home(){
                   </p>
                 </div>
               </div>
-            </a>           
-            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+            </a>    
+
+            <a href="#ministerios"
+            onClick={() => setMenuOpen(false)}
+             className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
               <div className="flex items-center gap-3">
                 <Users size={22} />
                 <div>
@@ -84,7 +125,10 @@ export default function Home(){
                 </div>
               </div>
             </a> 
-            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+            <a href="#visitanos" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
               <div className="flex items-center gap-3">
                 <MapPin size={22} />
                 <div>
@@ -98,7 +142,11 @@ export default function Home(){
                 </div>
               </div>
             </a> 
-            <a href="#" className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
+            <a href="#" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+
               <div className="flex items-center gap-3">
                 <HeartHandshake size={22} />
                 <div>
@@ -118,6 +166,10 @@ export default function Home(){
       )}
 
       
+
+
+
+              {/* HERO */}
       <section className="relative min-h-[calc(100vh-72px)] flex items-center justify-center bg-black text-white flex-col gap-6 px-6 pt-24 pb-16">
         <Image
           src="/church-hero1.jpg"
@@ -136,14 +188,26 @@ export default function Home(){
       </div>
       </section>
 
-      <section className="py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black flex-col">
+
+
+
+
+
+            {/* Cultos */}
+      <section id="cultos" className="scroll-mt-24 py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black flex-col">
         <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
               NUESTROS CULTOS
         </h2>
           <p className="mt-4 text-lg md:text-xl text-zinc-600">Hay un lugar para ti.</p>
         <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-start gap-6">
-          <button onClick={() => setSelectedService("adoracion")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+          <button onClick={() => setSelectedService("adoracion")} 
+          className={` hover:pl-7 w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300 ${
+            selectedService === "adoracion"
+              ? "border-l-8 border-l-black pl-5"
+              : "border-l border-l-transparent pl-5"
+          }`}>
+            
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
               Domingo
             </span>
@@ -157,7 +221,12 @@ export default function Home(){
             </p>
           </button>
 
-          <button onClick={() => setSelectedService("escuela")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+          <button onClick={() => setSelectedService("escuela")} 
+          className={`hover:pl-7 w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300 ${
+            selectedService === "escuela"
+              ? "border-l-8 border-l-black pl-5"
+              : "border-l border-l-transparent pl-5"
+          }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
               Domingo
             </span>
@@ -170,7 +239,12 @@ export default function Home(){
               Un espacio para conocer más de la Palabra de Dios y crecer juntos en nuestra fe.
             </p>
           </button>
-          <button onClick={() => setSelectedService("oracion")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+          <button onClick={() => setSelectedService("oracion")} 
+          className={`hover:pl-7 w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300 ${
+            selectedService === "oracion"
+              ? "border-l-8 border-l-black pl-5"
+              : "border-l border-l-transparent pl-5"
+          }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
               Martes
             </span>
@@ -183,7 +257,12 @@ export default function Home(){
               Un tiempo para buscar a Dios juntos a través de la oración, la adoración y la Palabra.
             </p>
           </button>
-          <button onClick={() => setSelectedService("jovenes")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+          <button onClick={() => setSelectedService("jovenes")} 
+          className={`hover:pl-7 w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300 ${
+            selectedService === "jovenes"
+              ? "border-l-8 border-l-black pl-5"
+              : "border-l border-l-transparent pl-5"
+          }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
               Viernes · Fechas Seleccionadas
             </span>
@@ -196,7 +275,12 @@ export default function Home(){
               Un espacio para que nuestros jóvenes conecten, crezcan en su fe y adoren a Dios juntos.
             </p>
           </button>
-          <button onClick={() => setSelectedService("matrimonios")} className="w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300">
+          <button onClick={() => setSelectedService("matrimonios")} 
+          className={`hover:pl-7 w-full text-left py-6 border-b border-black/20 hover:border-black transition-colors duration-300 ${
+            selectedService === "matrimonios"
+              ? "border-l-8 border-l-black pl-5"
+              : "border-l border-l-transparent pl-5"
+          }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
               Viernes · Fechas Seleccionadas
             </span>
@@ -212,6 +296,7 @@ export default function Home(){
           </div>
           <div className="relative aspect-[4/5] md:aspect-[4/5] overflow-hidden md:ml-12">
           <Image
+            key={selectedService}
             src={
               selectedService === "adoracion"
                 ? "/foto-adoracion.jpg"
@@ -229,13 +314,17 @@ export default function Home(){
             }
             alt="La Familia del Rey"
             fill
-            className="object-cover transition-transform duration-500 hover:scale-105"
+            className="service-image object-cover transition-transform duration-500 hover:scale-105"
           />
           </div>
         </div>
       </section>
 
-      <section className="py-24 md:py-32 px-6">
+
+
+
+              {/* Ultimo mensaje */}
+      <section id="mensaje" className="scroll-mt-24 py-24 md:py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div>
         <span className="text-sm font-semibold tracking-widest text-zinc-500">ÚLTIMO MENSAJE</span>
@@ -264,7 +353,11 @@ export default function Home(){
         </div>
       </section>
 
-      <section className="py-24 md:py-32 px-6 bg-black text-white">
+
+
+
+              {/* EVENTOS */}
+      <section id="eventos" className="scroll-mt-24 py-24 md:py-32 px-6 bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <span className="text-sm font-semibold tracking-widest text-zinc-400">PRÓXIMOS EVENTOS</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Conéctate con nuestra comunidad</h2>
@@ -276,6 +369,7 @@ export default function Home(){
                   src="/evento-1.jpg"
                   alt="Nombre del evento"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -294,6 +388,7 @@ export default function Home(){
                   src="/evento-2.jpg"
                   alt="Nombre del evento"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -312,6 +407,7 @@ export default function Home(){
                   src="/evento-3.jpg"
                   alt="Nombre del evento"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -333,8 +429,8 @@ export default function Home(){
 
 
 
-
-      <section className="py-24 md:py-32 px-6 bg-zinc-100 text-black">
+                {/* Ministerios */}
+      <section id="ministerios" className="scroll-mt-24 py-24 md:py-32 px-6 bg-zinc-100 text-black">
         <div className="max-w-6xl mx-auto">
           <span className=" text-sm font-semibold inline-block text-zinc-500">NUESTROS MINISTERIOS</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Hay un lugar para ti</h2>
@@ -345,6 +441,7 @@ export default function Home(){
                   src="/ministerio-1.jpg"
                   alt="Ministerio de La Familia del Rey"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -359,6 +456,7 @@ export default function Home(){
                   src="/ministerio-2.jpg"
                   alt="Ministerio de La Familia del Rey"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -373,6 +471,7 @@ export default function Home(){
                   src="/ministerio-3.jpg"
                   alt="Ministerio de La Familia del Rey"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -402,7 +501,7 @@ export default function Home(){
       </section>
 
 
-
+              {/* Footer */}
       <footer className="bg-black text-white px-6 py-12">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -421,19 +520,23 @@ export default function Home(){
               </h3>
 
               <div className="mt-4 flex flex-col gap-3">
-                <a href="/sermones" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="#cultos" className="text-zinc-400 hover:text-white transition-colors">
+                  Cultos
+                </a>
+
+                <a href="#mensaje" className="text-zinc-400 hover:text-white transition-colors">
                   Mensajes
                 </a>
 
-                <a href="/eventos" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="#eventos" className="text-zinc-400 hover:text-white transition-colors">
                   Eventos
                 </a>
 
-                <a href="/ministerios" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="#ministerios" className="text-zinc-400 hover:text-white transition-colors">
                   Ministerios
                 </a>
 
-                <a href="/visitanos" className="text-zinc-400 hover:text-white transition-colors">
+                <a href="#visitanos" className="text-zinc-400 hover:text-white transition-colors">
                   Visítanos
                 </a>
               </div>
