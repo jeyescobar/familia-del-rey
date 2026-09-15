@@ -127,7 +127,7 @@ export default function Home(){
         />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
       <div className="relative z-10 flex flex-col items-center gap-6 text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-center">La Familia del Rey</h1>
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-center">IGLESIA FAMILIA DEL REY</h1>
         <p className="text-lg md:text-xl max-w-2xl text-white/90">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
         <a className="inline-block bg-white text-black px-8 py-3 font-semibold hover:bg-black hover:text-white transition-colors duration-300">VISITANOS</a>
       </div>
@@ -238,55 +238,89 @@ export default function Home(){
       <section className="py-24 md:py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div>
-        <span className="text-sm font-semibold tracking-widest text-zinc-500">ULTIMO MENSAJE</span>
+        <span className="text-sm font-semibold tracking-widest text-zinc-500">ÚLTIMO MENSAJE</span>
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4"> Una palabra para tu vida</h2>
         <p className="mt-4 text-lg text-zinc-600">Escucha nuestro mensaje más reciente.</p>
           </div>
-            <div className="mt-12 aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
-              <span className="text-white text-4xl w-20 h-20 rounded-full border border-white flex items-center justify-center">▶</span>  
-            </div>
+
+            <button className=" w-full mt-12 relative overflow-hidden aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
+              <Image
+                src="/foto-predica.jpg"
+                alt="Último mensaje"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/25"></div>
+              <span className="text-white text-4xl w-20 h-20 rounded-full border border-white flex items-center justify-center relative z-10">▶</span>  
+            </button>
           <div className="mt-6">
+            <span className="text-sm font-semibold tracking-widest text-zinc-500">
+              SERIE
+            </span>
               <h3 className="text-2xl font-bold">Título del mensaje</h3>
               <p className="mt-2 text-zinc-500">Predicador · Fecha</p>
-              <a className="border-b border-black pb-1 hover:text-zinc-500 inline-block mt-4" href="#">VER MENSAJE</a>
+              <a className="border-b border-black pb-1 hover:text-zinc-500 inline-block mt-4" href="/sermones">VER MENSAJE</a>
           </div>
         </div>
       </section>
+
       <section className="py-24 md:py-32 px-6 bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <span className="text-sm font-semibold tracking-widest text-zinc-400">PRÓXIMOS EVENTOS</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Conéctate con nuestra comunidad</h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+
+              <div className=" relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
+                <Image
+                  src="/evento-1.jpg"
+                  alt="Nombre del evento"
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
                 <div className="pt-6">
-                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
+                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">20 SEP · 7:30 PM </span>
                   <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
                   <p className="mt-2 text-zinc-400">Hora · Lugar</p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
                 </div>
                 
             </div>
             <div>
-              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+              <div className="relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
+                <Image
+                  src="/evento-2.jpg"
+                  alt="Nombre del evento"
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
                 <div className="pt-6">
                   <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
                   <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
                   <p className="mt-2 text-zinc-400">Hora · Lugar</p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
                 </div>
                 
             </div>
             <div>
-              <div className="aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300"></div>
+              <div className="relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
+                <Image
+                  src="/evento-3.jpg"
+                  alt="Nombre del evento"
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
                 <div className="pt-6">
                   <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
                   <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
                   <p className="mt-2 text-zinc-400">Hora · Lugar</p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="#">VER EVENTO</a>
+                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
                 </div>
                 
             </div>
