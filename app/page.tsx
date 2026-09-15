@@ -5,6 +5,33 @@ import Image from "next/image"
 export default function Home(){
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("adoracion");
+  const [activeEvent, setActiveEvent] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(3);
+  const [isJumping, setIsJumping] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [isWheelLocked, setIsWheelLocked] = useState(false);
+  
+  const events = [
+  {
+    image: "/evento-1.jpg",
+    date: "20 SEP · 7:30 PM",
+    title: "Nombre del evento",
+    details: "Hora · Lugar",
+  },
+  {
+    image: "/evento-2.jpg",
+    date: "FECHA",
+    title: "Nombre del evento",
+    details: "Hora · Lugar",
+  },
+  {
+    image: "/evento-3.jpg",
+    date: "FECHA",
+    title: "Nombre del evento",
+    details: "Hora · Lugar",
+  },
+];
+  const loopEvents = [...events, ...events, ...events];
   useEffect(() => {
   document.body.style.overflow = menuOpen ? "hidden" : "";
 
@@ -361,12 +388,98 @@ export default function Home(){
         <div className="max-w-6xl mx-auto">
           <span className="text-sm font-semibold tracking-widest text-zinc-400">PRÓXIMOS EVENTOS</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Conéctate con nuestra comunidad</h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
+          <div className="mt-12 relative">
+            
+            <div
+              className="overflow-hidden touch-pan-y"
+
+              onTouchStart={(e) => {
+                setTouchStart(e.touches[0].clientX);
+              }}
+
+              onTouchEnd={(e) => {
+                if (touchStart === null) return;
+
+                const touchEnd = e.changedTouches[0].clientX;
+                const distance = touchStart - touchEnd;
+
+                if (distance > 50) {
+                  setCurrentSlide((prev) => prev + 1);
+                }
+
+                if (distance < -50) {
+                  setCurrentSlide((prev) => prev - 1);
+                }
+
+                setTouchStart(null);
+              }}
+
+              onWheel={(e) => {
+                if (isWheelLocked) return;
+
+                if (Math.abs(e.deltaX) < 8) return;
+
+                setIsWheelLocked(true);
+
+                if (e.deltaX > 0) {
+                  setCurrentSlide((prev) => prev + 1);
+                } else {
+                  setCurrentSlide((prev) => prev - 1);
+                }
+
+                setTimeout(() => {
+                  setIsWheelLocked(false);
+                }, 500);
+              }}
+            >
+              
+            <div className="mt-8 flex justify-center gap-4">
+              
+
+              
+            </div>
+            
+          <div
+            className={`events-track flex items-center gap-2 md:gap-6 ${
+              isJumping
+                ? "transition-none"
+                : "transition-transform duration-500 ease-out"
+            }`}
+            style={
+              {
+                "--slide": currentSlide,
+              } as React.CSSProperties
+            }
+              onTransitionEnd={() => {
+                if (currentSlide === 6) {
+                  setIsJumping(true);
+                  setCurrentSlide(3);
+                }
+                if (currentSlide === 2) {
+                  setIsJumping(true);
+                  setCurrentSlide(5);
+                }
+              }}
+            >
+
+
+              {loopEvents.map((event, index) => {
+                const realIndex = index % events.length;
+                const activeRealIndex = currentSlide % events.length;
+                return (
+                  <div
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                  className={`shrink-0 cursor-pointer transition-all duration-500 ${
+                    realIndex === activeRealIndex
+                      ? "w-[85%] md:w-[62%] opacity-100 scale-100"
+                      : "w-[85%] md:w-[62%] opacity-40 scale-90"
+                  }`}
+                >
 
               <div className=" relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
                 <Image
-                  src="/evento-1.jpg"
+                  src={event.image}
                   alt="Nombre del evento"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -375,52 +488,25 @@ export default function Home(){
               </div>
 
                 <div className="pt-6">
-                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">20 SEP · 7:30 PM </span>
-                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
-                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
-                </div>
-                
-            </div>
-            <div>
-              <div className="relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
-                <Image
-                  src="/evento-2.jpg"
-                  alt="Nombre del evento"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
+                  <span className="text-sm font-semibold tracking-widest text-zinc-400">
+                    {event.date}
+                  </span>
 
-                <div className="pt-6">
-                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
-                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
-                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
-                </div>
-                
-            </div>
-            <div>
-              <div className="relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
-                <Image
-                  src="/evento-3.jpg"
-                  alt="Nombre del evento"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
+                  <h3 className="text-2xl font-bold mt-2">
+                    {event.title}
+                  </h3>
 
-                <div className="pt-6">
-                  <span className ="text-sm font-semibold tracking-widest text-zinc-400">FECHA</span>
-                  <h3 className="text-2xl font-bold mt-2">Nombre del evento</h3>
-                  <p className="mt-2 text-zinc-400">Hora · Lugar</p>
+                  <p className="mt-2 text-zinc-400">
+                    {event.details}
+                  </p>
                   <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
                 </div>
                 
             </div>
 
+            );})}
+          </div>
+          </div>
           </div>
         </div>
       </section>

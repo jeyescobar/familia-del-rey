@@ -44,3 +44,23 @@ html{
 .service-image {
   animation: serviceImageFade 500ms ease-out;
 }
+
+.events-track {
+  --event-width: 85%;
+  --event-gap: 8px;
+
+  transform: translateX(
+    calc(
+      50% - (var(--slide) * var(--event-width))
+      - (var(--event-width) / 2)
+      - (var(--slide) * var(--event-gap))
+    )
+  );
+}
+
+@media (min-width: 768px) {
+  .events-track {
+    --event-width: 62%;
+    --event-gap: 24px;
+  }
+}
