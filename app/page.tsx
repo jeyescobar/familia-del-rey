@@ -359,24 +359,26 @@ export default function Home(){
         <p className="mt-4 text-lg text-zinc-600">Escucha nuestro mensaje más reciente.</p>
           </div>
 
-            <button className=" w-full mt-12 relative overflow-hidden aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
+            <button aria-label="Ver último mensaje"
+            className="group w-full mt-12 relative overflow-hidden aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
               <Image
                 src="/foto-predica.jpg"
                 alt="Último mensaje"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/25"></div>
-              <span className="text-white text-4xl w-20 h-20 rounded-full border border-white flex items-center justify-center relative z-10">▶</span>  
+              <span className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white text-3xl text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
+                ▶
+              </span>  
             </button>
-          <div className="mt-6">
+          <div className="mt-8 max-w-3xl">
             <span className="text-sm font-semibold tracking-widest text-zinc-500">
               SERIE
             </span>
-              <h3 className="text-2xl font-bold">Título del mensaje</h3>
+              <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">Título del mensaje</h3>
               <p className="mt-2 text-zinc-500">Predicador · Fecha</p>
-              <a className="border-b border-black pb-1 hover:text-zinc-500 inline-block mt-4" href="/sermones">VER MENSAJE</a>
-          </div>
+              </div>
         </div>
       </section>
 
