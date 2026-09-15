@@ -397,9 +397,74 @@ export default function Home(){
           <span className="text-sm font-semibold tracking-wides text-zinc-400 ">VISÍTANOS</span>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Queremos conocerte</h2>
           <p className="text-lg mt-4 text-zinc-400 max-w-2xl mx-auto">Planifica tu visita y acompáñanos en nuestro próximo servicio.</p>
-          <a className="inline-block mt-8 bg-white text-black px-8 py-3 border border-white hover:bg-black hover:text-white transition-colors duration-300" href="#">PLANIFICA TU VISITA</a>
+          <a className="inline-block mt-8 bg-white text-black px-8 py-3 border border-white hover:bg-black hover:text-white transition-colors duration-300" href="/visitanos">PLANIFICA TU VISITA</a>
         </div>
       </section>
+
+
+
+      <footer className="bg-black text-white px-6 py-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+              <h3 className="text-xl font-bold">
+                La Familia del Rey
+              </h3>
+
+              <p className="mt-4 text-zinc-400 max-w-sm">
+                Una iglesia donde puedes pertenecer, crecer y compartir.
+              </p>
+            </div>
+            <div className="md:justify-self-center">
+              <h3 className="text-sm font-semibold tracking-widest">
+                NAVEGACIÓN
+              </h3>
+
+              <div className="mt-4 flex flex-col gap-3">
+                <a href="/sermones" className="text-zinc-400 hover:text-white transition-colors">
+                  Mensajes
+                </a>
+
+                <a href="/eventos" className="text-zinc-400 hover:text-white transition-colors">
+                  Eventos
+                </a>
+
+                <a href="/ministerios" className="text-zinc-400 hover:text-white transition-colors">
+                  Ministerios
+                </a>
+
+                <a href="/visitanos" className="text-zinc-400 hover:text-white transition-colors">
+                  Visítanos
+                </a>
+              </div>
+            </div>
+            <div className="md:justify-self-end">
+              <h3 className="text-sm font-semibold tracking-widest">
+                CONECTA
+              </h3>
+
+              <div className="mt-4 flex flex-col gap-3">
+                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                  Facebook
+                </a>
+
+                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                  Instagram
+                </a>
+
+                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                  YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <p className="text-sm text-zinc-500">
+              © 2026 La Familia del Rey. Todos los derechos reservados.
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
     
   );
