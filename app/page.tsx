@@ -660,12 +660,36 @@ export default function Home(){
           </div>
         </div>
       </section>
-      <section id="visitanos" className ="py-24 md:py-32 py-6 bg-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
+
+
+      <section id="visitanos" className="scroll-mt-24 py-24 md:py-32 px-6 bg-black text-white">
+          <div className="max-w-6xl mx-auto">
           <span className="text-sm font-semibold tracking-wides text-zinc-400 ">VISÍTANOS</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Queremos conocerte</h2>
-          <p className="text-lg mt-4 text-zinc-400 max-w-2xl mx-auto">Planifica tu visita y acompáñanos en nuestro próximo servicio.</p>
-          <a className="inline-block mt-8 bg-white text-black px-8 py-3 border border-white hover:bg-black hover:text-white transition-colors duration-300" href="/visitanos">PLANIFICA TU VISITA</a>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Queremos conocerte</h2>
+              <p className="text-lg mt-4 text-zinc-400 max-w-2xl mx-auto">Planifica tu visita y acompáñanos en nuestro próximo servicio.</p>
+              <div className="mt-8">
+                <p className="text-sm text-zinc-500 uppercase tracking-wider">
+                  Ubicación
+                </p>
+
+                <p className="mt-2 text-lg text-white">
+                  CARR 877 KM 1.2 BO. MARTIN GONZALEZ, CAROLINA PR
+                </p>
+              </div>
+            </div>
+            <div className="h-[360px] overflow-hidden rounded-3xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3786.2341259268924!2d-65.97647562393985!3d18.38219257338489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c036721c1546547%3A0xfac551051aaad858!2sIglesia%20Pentecostal%20M.I.%20La%20Familia%20del%20Rey%20(Carolina%20Pueblo)!5e0!3m2!1ses!2spr!4v1789513698370!5m2!1ses!2spr"
+              className="w-full h-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Ubicación de La Familia del Rey"
+            />
+          </div>
+        </div>
         </div>
       </section>
 
