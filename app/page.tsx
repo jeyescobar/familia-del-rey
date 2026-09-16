@@ -1,4 +1,5 @@
 "use client";
+import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, ChevronDown} from "lucide-react";
 import Image from "next/image"
@@ -15,6 +16,19 @@ export default function Home(){
   const [isJumping, setIsJumping] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [isWheelLocked, setIsWheelLocked] = useState(false);
+  const [isLive, setIsLive] = useState(false);
+  const [liveUrl, setLiveUrl] = useState<string | null>(null);
+  useEffect(() => {
+  async function getLiveStatus() {
+    const response = await fetch("/api/live");
+    const data = await response.json();
+
+    setIsLive(data.isLive);
+    setLiveUrl(data.liveUrl);
+  }
+
+  getLiveStatus();
+}, []);
   
   
   const events = [
@@ -59,21 +73,23 @@ export default function Home(){
               ☰
             </button>
             
-            <a
-              href="https://www.youtube.com/@iglesialafamiliadelrey/live"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 group"
-            >
-              <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-red-600"></span>
-              </span>
+            {isLive && (
+              <a
+                href={liveUrl ?? "https://www.youtube.com/@iglesialafamiliadelrey/live"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 group"
+              >
+                <span className="relative flex h-3 w-3">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-red-600"></span>
+                </span>
 
-              <span className="text-xs font-bold tracking-widest text-red-500 group-hover:text-red-400 transition-colors">
-                LIVE
-              </span>
-            </a>
+                <span className="text-xs font-bold tracking-widest text-red-500 group-hover:text-red-400 transition-colors">
+                  LIVE
+                </span>
+              </a>
+            )}
             <a href="#" className="relative block h-12 w-48">
               <Image
                 src="/logo.png"

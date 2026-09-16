@@ -1,0 +1,8 @@
+// use prisma-8
+
+model SiteSettings {
+  id        Int      @id @default(autoincrement())
+  isLive    Boolean  @default(false)
+  liveUrl   String?
+  updatedAt temporal.updatedAtString()
+}
