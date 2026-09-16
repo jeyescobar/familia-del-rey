@@ -1,5 +1,4 @@
 "use client";
-import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, ChevronDown} from "lucide-react";
 import Image from "next/image"
@@ -18,16 +17,25 @@ export default function Home(){
   const [isWheelLocked, setIsWheelLocked] = useState(false);
   const [isLive, setIsLive] = useState(false);
   const [liveUrl, setLiveUrl] = useState<string | null>(null);
-  useEffect(() => {
+ useEffect(() => {
   async function getLiveStatus() {
-    const response = await fetch("/api/live");
-    const data = await response.json();
-
-    setIsLive(data.isLive);
-    setLiveUrl(data.liveUrl);
+    try {
+      const response = await fetch("/api/live");
+      if (!response.ok) {
+        return;
+      }
+      const data = await response.json();
+      setIsLive(data.isLive);
+      setLiveUrl(data.liveUrl);
+    } catch (error) {
+      console.error("Error fetching live status:", error);
+    }
   }
-
   getLiveStatus();
+
+  const interval = setInterval(getLiveStatus, 10000);
+
+  return () => clearInterval(interval);
 }, []);
   
   
