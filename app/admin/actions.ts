@@ -195,6 +195,14 @@ if (!allowedYouTubeHosts.includes(parsedYouTubeUrl.hostname)) {
         imageUrl,
         imageKey,
       });
+
+      if (
+  existingMessage[0].imageKey &&
+  existingMessage[0].imageKey !== imageKey
+) {
+  await utapi.deleteFiles(existingMessage[0].imageKey);
+}
+
   } else {
     await db.orm.public.LastMessage.create({
       series: series.trim(),
