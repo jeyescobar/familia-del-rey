@@ -971,6 +971,12 @@ function formatEventTime(time: string) {
             <p className="text-sm text-zinc-500">
               © 2026 La Familia del Rey. Todos los derechos reservados.
             </p>
+            <a
+              href="/admin"
+              className="ml-auto text-sm text-zinc-600 hover:text-zinc-300 transition-colors"
+            >
+              Administración
+            </a>
           </div>
         </div>
         </div>
