@@ -2,6 +2,11 @@
 import { useEffect, useState } from "react";
 import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, ChevronDown} from "lucide-react";
 import Image from "next/image"
+import { Cormorant_Garamond } from "next/font/google";
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 export default function Home(){
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("adoracion");
@@ -10,6 +15,7 @@ export default function Home(){
   const [isJumping, setIsJumping] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [isWheelLocked, setIsWheelLocked] = useState(false);
+  
   
   const events = [
   {
@@ -53,8 +59,30 @@ export default function Home(){
               ☰
             </button>
             
+            <a
+              href="https://www.youtube.com/@iglesialafamiliadelrey/live"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 group"
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-red-600"></span>
+              </span>
 
-            <a href="#">La Familia del Rey</a>
+              <span className="text-xs font-bold tracking-widest text-red-500 group-hover:text-red-400 transition-colors">
+                LIVE
+              </span>
+            </a>
+            <a href="#" className="relative block h-12 w-48">
+              <Image
+                src="/logo.png"
+                alt="La Familia del Rey"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </a>
           </div>
             <div className="flex gap-8 items-center hidden md:flex">
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#">INICIO</a>
@@ -63,7 +91,14 @@ export default function Home(){
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#eventos">EVENTOS</a>
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#ministerios">MINISTERIOS</a>
               <a className="hover:text-zinc-400 transition-colors duration-300" href="#visitanos">VISÍTANOS</a>
-              <a className="border border-white px-5 py-2 hover:bg-white hover:text-black transition-colors duration-300"href="#">DAR</a>
+              <a
+                className="border border-white px-5 py-2 hover:bg-white hover:text-black transition-colors duration-300"
+                href="https://lafamiliadelrey.churchcenter.com/giving"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DAR
+              </a>
             </div>
             
         </div>
@@ -206,9 +241,9 @@ export default function Home(){
         />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
       <div className="relative z-10 flex flex-col items-center gap-6 text-center">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-center">IGLESIA FAMILIA DEL REY</h1>
+        <h1 className={`${cormorant.className} text-5xl md:text-7xl font-bold tracking-tight text-center`}>IDDPMI LA FAMILIA DEL REY</h1>
         <p className="text-lg md:text-xl max-w-2xl text-white/90">Una Iglesia donde puedes pertenecer, crecer y compartir.</p>
-        <a className="inline-block bg-white text-black px-8 py-3 font-semibold hover:bg-black hover:text-white transition-colors duration-300">VISITANOS</a>
+        <a href="#visitanos" className="inline-block bg-white text-black px-8 py-3 font-semibold hover:bg-black hover:text-white transition-colors duration-300">VISITANOS</a>
       </div>
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70">
         <ChevronDown size ={28} className="animate-bounce"/>
@@ -221,11 +256,13 @@ export default function Home(){
 
 
             {/* Cultos */}
-      <section id="cultos" className="scroll-mt-24 py-24 md:py-32 flex items-center justify-center px-6 bg-zinc-100 text-black flex-col">
-        <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+      <section id="cultos" className="scroll-mt-24 py-24 md:py-32 flex items-center justify-center px-6 bg-[url('/background.jpg')] bg-cover bg-center text-black flex-col">
+        <h2
+          className={`${cormorant.className} text-4xl md:text-6xl font-bold tracking-tight`}
+        >
               NUESTROS CULTOS
         </h2>
-          <p className="mt-4 text-lg md:text-xl text-zinc-600">Hay un lugar para ti.</p>
+          <p className="mt-4 text-lg md:text-xl text-zinc-600 leading-relaxed">Hay un lugar para ti.</p>
         <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-start gap-6">
           <button onClick={() => setSelectedService("adoracion")} 
@@ -351,12 +388,19 @@ export default function Home(){
 
 
               {/* Ultimo mensaje */}
-      <section id="mensaje" className="scroll-mt-24 py-24 md:py-32 px-6">
+      <section
+          id="mensaje"
+          className="scroll-mt-24 py-24 md:py-32 px-6 bg-black text-white"
+        >
         <div className="max-w-6xl mx-auto">
           <div>
-        <span className="text-sm font-semibold tracking-widest text-zinc-500">ÚLTIMO MENSAJE</span>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4"> Una palabra para tu vida</h2>
-        <p className="mt-4 text-lg text-zinc-600">Escucha nuestro mensaje más reciente.</p>
+        <span className="text-sm font-semibold tracking-widest text-zinc-400">ÚLTIMO MENSAJE</span>
+        <h2
+          className={`${cormorant.className} text-4xl md:text-6xl font-bold tracking-tight mt-4`}
+        >
+          Una Palabra Para Tu Vida.
+        </h2>
+        <p className="mt-4 text-lg text-zinc-400">Escucha nuestro mensaje más reciente.</p>
           </div>
 
             <button aria-label="Ver último mensaje"
@@ -380,16 +424,20 @@ export default function Home(){
               <p className="mt-2 text-zinc-500">Predicador · Fecha</p>
               </div>
         </div>
+        
       </section>
 
 
 
 
               {/* EVENTOS */}
-      <section id="eventos" className="scroll-mt-24 py-24 md:py-32 px-6 bg-black text-white">
-        <div className="max-w-6xl mx-auto">
+          <section id="eventos" className="scroll-mt-24 py-24 md:py-32 px-6 bg-[#181818] text-white">        <div className="max-w-6xl mx-auto">
           <span className="text-sm font-semibold tracking-widest text-zinc-400">PRÓXIMOS EVENTOS</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Conéctate con nuestra comunidad</h2>
+          <h2
+            className={`${cormorant.className} text-4xl md:text-6xl font-bold tracking-tight mt-4`}
+          >
+            Hay Algo Para Ti 
+          </h2>
           <div className="mt-12 relative">
             
             <div
@@ -518,10 +566,13 @@ export default function Home(){
 
 
                 {/* Ministerios */}
-      <section id="ministerios" className="scroll-mt-24 py-24 md:py-32 px-6 bg-zinc-100 text-black">
+      <section id="ministerios" className="scroll-mt-24 py-24 md:py-32 px-6 bg-cover bg-center bg-no-repeat text-black"
+      style={{ backgroundImage: "url('/background.jpg')" }}>
         <div className="max-w-6xl mx-auto">
           <span className=" text-sm font-semibold inline-block text-zinc-500">NUESTROS MINISTERIOS</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Hay un lugar para ti</h2>
+          <h2 className={`${cormorant.className} text-4xl md:text-6xl font-bold tracking-tight mt-4`}>
+            Hay Un Lugar Para Servir.
+          </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="group relative h-[360px] overflow-hidden rounded-3xl bg-zinc-300">
@@ -669,10 +720,14 @@ export default function Home(){
           <span className="text-sm font-semibold tracking-wides text-zinc-400 ">VISÍTANOS</span>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4">Queremos conocerte</h2>
+              <h2
+                className={`${cormorant.className} text-4xl md:text-6xl font-bold tracking-tight mt-4`}
+                    >
+                      Queremos Conocerte!
+              </h2>
               <p className="text-lg mt-4 text-zinc-400 max-w-2xl mx-auto">Planifica tu visita y acompáñanos en nuestro próximo servicio.</p>
               <div className="mt-8">
-                <p className="text-sm text-zinc-500 uppercase tracking-wider">
+                <p className="mt-24 text-sm text-zinc-500 uppercase tracking-wider">
                   Ubicación
                 </p>
 
@@ -701,13 +756,9 @@ export default function Home(){
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div>
-              <h3 className="text-xl font-bold">
-                La Familia del Rey
+              <h3 className="mt-12 text-2xl font-bold tracking-tight text-center">
+                Iglesia IDPPMI La Familia del Rey
               </h3>
-
-              <p className="mt-4 text-zinc-400 max-w-sm">
-                Una iglesia donde puedes pertenecer, crecer y compartir.
-              </p>
             </div>
             <div className="md:justify-self-center">
               <h3 className="text-sm font-semibold tracking-widest">
@@ -742,25 +793,51 @@ export default function Home(){
               </h3>
 
               <div className="mt-4 flex flex-col gap-3">
-                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                <a
+                  href="https://www.facebook.com/IglesiaLaFamiliadelRey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
                   Facebook
                 </a>
 
-                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                <a
+                  href="https://www.instagram.com/youthhdr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
                   Instagram
                 </a>
 
-                <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                <a
+                  href="https://www.youtube.com/@iglesialafamiliadelrey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
                   YouTube
                 </a>
               </div>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="flex items-center gap-3">
+            <div className="relative h-8 w-10 shrink-0">
+              <Image
+                src="/logo.png"
+                alt="La Familia del Rey"
+                fill
+                className="object-contain"
+              />
+            </div>
+
             <p className="text-sm text-zinc-500">
               © 2026 La Familia del Rey. Todos los derechos reservados.
             </p>
           </div>
+        </div>
         </div>
       </footer>
     </main>
