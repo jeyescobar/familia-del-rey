@@ -27,3 +27,33 @@ export async function toggleLive() {
   revalidatePath("/admin/dashboard");
   revalidatePath("/");
 }
+export async function updateLiveUrl(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  const liveUrl = formData.get("liveUrl");
+
+  if (typeof liveUrl !== "string") {
+    throw new Error("Invalid live URL");
+  }
+  const trimmedUrl = liveUrl.trim();
+
+if (
+  trimmedUrl !== "" &&
+  !trimmedUrl.startsWith("https://www.youtube.com/") &&
+  !trimmedUrl.startsWith("https://youtu.be/")
+) {
+  throw new Error("The URL must be a YouTube link");
+}
+await db.orm.public.SiteSettings
+  .where({ id: 1 })
+  .update({
+    liveUrl: trimmedUrl === "" ? null : trimmedUrl,
+  });
+
+revalidatePath("/admin/dashboard");
+revalidatePath("/");
+}
