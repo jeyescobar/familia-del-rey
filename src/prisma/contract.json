@@ -8,6 +8,10 @@
       "model": "Event",
       "namespace": "public"
     },
+    "lastMessage": {
+      "model": "LastMessage",
+      "namespace": "public"
+    },
     "siteSettings": {
       "model": "SiteSettings",
       "namespace": "public"
@@ -96,6 +100,97 @@
               },
               "namespaceId": "public",
               "table": "event"
+            }
+          },
+          "LastMessage": {
+            "fields": {
+              "date": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "imageKey": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "imageUrl": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "preacher": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "series": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "title": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "youtubeUrl": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "date": {
+                  "column": "date"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "imageKey": {
+                  "column": "imageKey"
+                },
+                "imageUrl": {
+                  "column": "imageUrl"
+                },
+                "preacher": {
+                  "column": "preacher"
+                },
+                "series": {
+                  "column": "series"
+                },
+                "title": {
+                  "column": "title"
+                },
+                "youtubeUrl": {
+                  "column": "youtubeUrl"
+                }
+              },
+              "namespaceId": "public",
+              "table": "lastMessage"
             }
           },
           "SiteSettings": {
@@ -209,6 +304,62 @@
               },
               "uniques": []
             },
+            "lastMessage": {
+              "columns": {
+                "date": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/int4@1",
+                  "default": {
+                    "expression": "autoincrement()",
+                    "kind": "function"
+                  },
+                  "nativeType": "int4",
+                  "nullable": false
+                },
+                "imageKey": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": true
+                },
+                "imageUrl": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "preacher": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "series": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "title": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "youtubeUrl": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": []
+            },
             "siteSettings": {
               "columns": {
                 "id": {
@@ -255,7 +406,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "0308ca2e18d5bdb189f97f442b1217dc3cccb37be6d9bc6225d19c93bd4c5709"
+    "storageHash": "e8dde36a79644d565869c579543efd4133af420e8d85b82075731650ba1d4891"
   },
   "execution": {
     "executionHash": "ef46904bb953ae9175db218a9e5866fade23b4b52d8985aa358bdeb8b640eb1e",

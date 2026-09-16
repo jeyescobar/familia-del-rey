@@ -83,7 +83,7 @@ export async function createEvent(formData: FormData) {
   ) {
     throw new Error("Invalid event data");
   }
-  
+
   if (imageUrl.trim() === "" || imageKey.trim() === "") {
   throw new Error("Event image is required");
 }
@@ -126,4 +126,84 @@ export async function deleteEvent(formData: FormData) {
 
   revalidatePath("/admin/dashboard");
   revalidatePath("/");
+}
+
+export async function updateLastMessage(formData: FormData) {
+  const session = await auth();
+
+if (!session) {
+  throw new Error("Unauthorized");
+}
+  const series = formData.get("series");
+  const title = formData.get("title");
+  const preacher = formData.get("preacher");
+  const date = formData.get("date");
+  const youtubeUrl = formData.get("youtubeUrl");
+  const imageUrl = formData.get("imageUrl");
+  const imageKey = formData.get("imageKey");
+
+  if (
+    typeof series !== "string" ||
+    typeof title !== "string" ||
+    typeof preacher !== "string" ||
+    typeof date !== "string" ||
+    typeof youtubeUrl !== "string" ||
+    typeof imageUrl !== "string" ||
+    typeof imageKey !== "string"
+  ) {
+    throw new Error("Invalid last message data");
+  }
+
+  if (imageUrl.trim() === "" || imageKey.trim() === "") {
+    throw new Error("Message cover is required");
+  }
+  revalidatePath("/admin/dashboard");
+  revalidatePath("/");
+
+  const allowedYouTubeHosts = [
+  "youtube.com",
+  "www.youtube.com",
+  "youtu.be",
+];
+
+let parsedYouTubeUrl: URL;
+
+try {
+  parsedYouTubeUrl = new URL(youtubeUrl);
+} catch {
+  throw new Error("Invalid YouTube URL");
+}
+
+if (!allowedYouTubeHosts.includes(parsedYouTubeUrl.hostname)) {
+  throw new Error("Only YouTube links are allowed");
+}
+
+  const existingMessage = await db.orm.public.LastMessage
+    .all();
+
+  if (existingMessage.length > 0) {
+    
+
+    await db.orm.public.LastMessage
+      .where({ id: existingMessage[0].id })
+      .update({
+        series: series.trim(),
+        title: title.trim(),
+        preacher: preacher.trim(),
+        date,
+        youtubeUrl: youtubeUrl.trim(),
+        imageUrl,
+        imageKey,
+      });
+  } else {
+    await db.orm.public.LastMessage.create({
+      series: series.trim(),
+      title: title.trim(),
+      preacher: preacher.trim(),
+      date,
+      youtubeUrl: youtubeUrl.trim(),
+      imageUrl,
+      imageKey,
+    });
+  }
 }

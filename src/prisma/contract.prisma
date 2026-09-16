@@ -1,4 +1,5 @@
 // use prisma-8
+
 model SiteSettings {
   id        Int                        @id @default(autoincrement())
   isLive    Boolean                    @default(false)
@@ -14,4 +15,15 @@ model Event {
   location String
   imageUrl String
   imageKey String?
+}
+
+model LastMessage {
+  id         Int    @id @default(autoincrement())
+  series     String
+  title      String
+  preacher   String
+  date       String
+  youtubeUrl String
+  imageUrl   String
+  imageKey   String?
 }

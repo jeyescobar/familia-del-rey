@@ -4,6 +4,7 @@ import { db } from "@/src/prisma/db";
 import { toggleLive, updateLiveUrl} from "@/app/admin/actions";
 import EventForm from "@/app/admin/components/EventForm";
 import DeleteEventButton from "@/app/admin/components/DeleteEventButton";
+import LastMessageForm from "@/app/admin/components/LastMessageForm";
 
 export default async function AdminDashboard() {
   const session = await auth();
@@ -15,6 +16,9 @@ export default async function AdminDashboard() {
   .where({ id: 1 })
   .first();
   const events = await db.orm.public.Event.all();
+  const messages = await db.orm.public.LastMessage.all();
+
+  const lastMessage = messages[0] ?? null;
 
   return (
   <main className="min-h-screen bg-[#181818] text-white px-6 py-16">
@@ -31,6 +35,7 @@ export default async function AdminDashboard() {
         <h2 className="text-2xl font-bold">
           Transmisión en vivo
         </h2>
+        
 
         <p className="text-gray-500 mt-2">
           Controla si el indicador LIVE aparece en la página principal.
@@ -68,6 +73,9 @@ export default async function AdminDashboard() {
                 {settings?.isLive ? "Desactivar LIVE" : "Activar LIVE"}
             </button>
             </form>
+        </div>
+        <div className="mt-10 bg-white text-black rounded-2xl p-6">
+        <LastMessageForm lastMessage={lastMessage} />
         </div>
       </div>
       <div className="mt-8 bg-white text-black rounded-2xl p-6">

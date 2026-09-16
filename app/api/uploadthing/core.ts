@@ -10,7 +10,10 @@ export const ourFileRouter = {
       maxFileSize: "4MB",
       maxFileCount: 1,
     },
-  })
+  }
+
+  
+)
     .middleware(async () => {
       const session = await auth();
 
@@ -26,6 +29,27 @@ export const ourFileRouter = {
     imageKey: file.key,
   };
 }),
+messageCover: f({
+  image: {
+    maxFileSize: "4MB",
+    maxFileCount: 1,
+  },
+})
+  .middleware(async () => {
+    const session = await auth();
+
+    if (!session) {
+      throw new UploadThingError("Unauthorized");
+    }
+
+    return { userId: "admin" };
+  })
+  .onUploadComplete(async ({ file }) => {
+    return {
+      imageUrl: file.ufsUrl,
+      imageKey: file.key,
+    };
+  }),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

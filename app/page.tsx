@@ -17,6 +17,15 @@ export default function Home(){
   const [isWheelLocked, setIsWheelLocked] = useState(false);
   const [isLive, setIsLive] = useState(false);
   const [liveUrl, setLiveUrl] = useState<string | null>(null);
+  const [lastMessage, setLastMessage] = useState<{
+  id: number;
+  series: string;
+  title: string;
+  preacher: string;
+  date: string;
+  youtubeUrl: string;
+  imageUrl: string;
+} | null>(null);
   const [databaseEvents, setDatabaseEvents] = useState<any[]>([]);
  useEffect(() => {
   async function getLiveStatus() {
@@ -38,6 +47,25 @@ export default function Home(){
   const interval = setInterval(getLiveStatus, 10000);
 
   return () => clearInterval(interval);
+}, []);
+
+useEffect(() => {
+  const fetchLastMessage = async () => {
+    try {
+      const response = await fetch("/api/last-message");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch last message");
+      }
+
+      const data = await response.json();
+      setLastMessage(data);
+    } catch (error) {
+      console.error("Error fetching last message:", error);
+    }
+  };
+
+  fetchLastMessage();
 }, []);
   
 const sortedEvents = [...databaseEvents].sort((a, b) => {
@@ -464,25 +492,40 @@ function formatEventTime(time: string) {
         <p className="mt-4 text-lg text-zinc-400">Escucha nuestro mensaje más reciente.</p>
           </div>
 
-            <button aria-label="Ver último mensaje"
-            className="group w-full mt-12 relative overflow-hidden aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300">
+            <a
+              href={lastMessage?.youtubeUrl ?? "#"}
+              target={lastMessage ? "_blank" : undefined}
+              rel={lastMessage ? "noopener noreferrer" : undefined}
+              aria-label="Ver último mensaje"
+              className="group w-full mt-12 relative overflow-hidden aspect-video bg-zinc-900 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity duration-300"
+            >
               <Image
-                src="/foto-predica.jpg"
-                alt="Último mensaje"
+                src={lastMessage?.imageUrl ?? "/foto-predica.jpg"}
+                alt={lastMessage?.title ?? "Último mensaje"}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
+
               <div className="absolute inset-0 bg-black/25"></div>
+
               <span className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white text-3xl text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
                 ▶
-              </span>  
-            </button>
+              </span>
+            </a>
           <div className="mt-8 max-w-3xl">
             <span className="text-sm font-semibold tracking-widest text-zinc-500">
-              SERIE
+              {lastMessage?.series ?? "SERIE"}
             </span>
-              <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">Título del mensaje</h3>
-              <p className="mt-2 text-zinc-500">Predicador · Fecha</p>
+
+            <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight">
+              {lastMessage?.title ?? "Título del mensaje"}
+            </h3>
+
+            <p className="mt-2 text-zinc-500">
+              {lastMessage
+                ? `${lastMessage.preacher} · ${lastMessage.date}`
+                : "Predicador · Fecha"}
+            </p>
               </div>
         </div>
         
