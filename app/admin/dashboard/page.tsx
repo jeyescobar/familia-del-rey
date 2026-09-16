@@ -1,8 +1,9 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/src/prisma/db";
-import { toggleLive, updateLiveUrl, deleteEvent, createEvent} from "@/app/admin/actions";
+import { toggleLive, updateLiveUrl} from "@/app/admin/actions";
 import EventForm from "@/app/admin/components/EventForm";
+import DeleteEventButton from "@/app/admin/components/DeleteEventButton";
 
 export default async function AdminDashboard() {
   const session = await auth();
@@ -97,20 +98,9 @@ export default async function AdminDashboard() {
             <p>Fecha: {event.date}</p>
             <p>Hora: {event.time}</p>
             <p>Lugar: {event.location}</p>
-            <form action={deleteEvent} className="mt-4">
-                <input
-                    type="hidden"
-                    name="eventId"
-                    value={event.id}
-                />
-
-                <button
-                    type="submit"
-                    className="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
-                    Eliminar evento
-                </button>
-                </form>
+            <div className="mt-4">
+            <DeleteEventButton eventId={event.id} />
+            </div>
         </div>
         ))}
     </div>

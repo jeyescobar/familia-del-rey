@@ -21,10 +21,11 @@ export const ourFileRouter = {
       return { userId: "admin" };
     })
     .onUploadComplete(async ({ file }) => {
-      return {
-        imageUrl: file.ufsUrl,
-      };
-    }),
+  return {
+    imageUrl: file.ufsUrl,
+    imageKey: file.key,
+  };
+}),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

@@ -40,12 +40,15 @@ export default function Home(){
   return () => clearInterval(interval);
 }, []);
   
-  
+const sortedEvents = [...databaseEvents].sort((a, b) => {
+  return a.date.localeCompare(b.date);
+});
+
 const loopEvents = [
-  ...databaseEvents,
-  ...databaseEvents,
-  ...databaseEvents,
-]; 
+  ...sortedEvents,
+  ...sortedEvents,
+  ...sortedEvents,
+];
 useEffect(() => {
   document.body.style.overflow = menuOpen ? "hidden" : "";
 
@@ -79,6 +82,27 @@ useEffect(() => {
   }
 }, [databaseEvents.length]);
 
+function formatEventDate(date: string) {
+  const [year, month, day] = date.split("-");
+
+  const months = [
+    "ENE", "FEB", "MAR", "ABR",
+    "MAY", "JUN", "JUL", "AGO",
+    "SEP", "OCT", "NOV", "DIC",
+  ];
+
+  return `${day} ${months[Number(month) - 1]}`;
+}
+
+function formatEventTime(time: string) {
+  const [hourString, minute] = time.split(":");
+  const hour = Number(hourString);
+
+  const period = hour >= 12 ? "PM" : "AM";
+  const formattedHour = hour % 12 || 12;
+
+  return `${formattedHour}:${minute} ${period}`;
+}
 
   return (
     
@@ -525,13 +549,13 @@ useEffect(() => {
 
               
             </div>
-            {databaseEvents.length === 1 && (
+            {sortedEvents.length === 1 && (
   <div className="max-w-4xl mx-auto">
     <div className="relative overflow-hidden aspect-video bg-zinc-800">
 
       <Image
-        src={databaseEvents[0].imageUrl}
-        alt={databaseEvents[0].name}
+        src={sortedEvents[0].imageUrl}
+        alt={sortedEvents[0].name}
         fill
         sizes="(max-width: 768px) 100vw, 896px"
         className="object-cover"
@@ -540,15 +564,15 @@ useEffect(() => {
 
     <div className="pt-6">
       <span className="text-sm font-semibold tracking-widest text-zinc-400">
-        {databaseEvents[0].date}
+        {formatEventDate(sortedEvents[0].date)}
       </span>
 
       <h3 className="text-2xl font-bold mt-2">
-        {databaseEvents[0].name}
+        {sortedEvents[0].name}
       </h3>
 
       <p className="mt-2 text-zinc-400">
-        {databaseEvents[0].time} · {databaseEvents[0].location}
+        {formatEventTime(sortedEvents[0].time)} · {sortedEvents[0].location}
       </p>
     </div>
   </div>
@@ -566,7 +590,7 @@ useEffect(() => {
               } as React.CSSProperties
             }
               onTransitionEnd={() => {
-                const eventCount = databaseEvents.length;
+                const eventCount = sortedEvents.length;
 
                 if (currentSlide >= eventCount * 2) {
                   setIsJumping(true);
@@ -582,8 +606,8 @@ useEffect(() => {
 
 
               {loopEvents.map((event, index) => {
-                const realIndex = index % databaseEvents.length;
-                const activeRealIndex = currentSlide % databaseEvents.length;
+                const realIndex = index % sortedEvents.length;
+                const activeRealIndex = currentSlide % sortedEvents.length;
                 return (
                   <div
                     key={index}
@@ -607,7 +631,7 @@ useEffect(() => {
 
                 <div className="pt-6">
                   <span className="text-sm font-semibold tracking-widest text-zinc-400">
-                    {event.date}
+                    {formatEventDate(event.date)}
                   </span>
 
                   <h3 className="text-2xl font-bold mt-2">
@@ -615,7 +639,7 @@ useEffect(() => {
                   </h3>
 
                   <p className="mt-2 text-zinc-400">
-                    {event.time} · {event.location}
+                    {formatEventTime(event.time)} · {event.location}
                   </p>
                 </div>
                 

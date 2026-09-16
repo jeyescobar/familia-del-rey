@@ -7,6 +7,7 @@ import { createEvent } from "@/app/admin/actions";
 
 export default function EventForm() {
     const [imageUrl, setImageUrl] = useState("");
+    const [imageKey, setImageKey] = useState("");
   return (
   <form action={createEvent} className="space-y-4">
     <div>
@@ -61,6 +62,7 @@ export default function EventForm() {
   endpoint="eventImage"
   onClientUploadComplete={(res) => {
   const uploadedUrl = res[0]?.ufsUrl;
+  const uploadedKey = res[0]?.key;
     <input
   type="hidden"
   name="imageUrl"
@@ -84,6 +86,7 @@ export default function EventForm() {
   name="imageUrl"
   value={imageUrl}
 />
+<input type="hidden" name="imageKey" value={imageKey} />
 
 <button
   type="submit"

@@ -1,17 +1,17 @@
 // use prisma-8
-
 model SiteSettings {
-  id        Int      @id @default(autoincrement())
-  isLive    Boolean  @default(false)
+  id        Int                        @id @default(autoincrement())
+  isLive    Boolean                    @default(false)
   liveUrl   String?
   updatedAt temporal.updatedAtString()
 }
 
 model Event {
-  id       Int    @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String
   date     String
   time     String
   location String
   imageUrl String
+  imageKey String?
 }

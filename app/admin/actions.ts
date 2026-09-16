@@ -3,7 +3,8 @@
 import { auth } from "@/auth";
 import { db } from "@/src/prisma/db";
 import { revalidatePath } from "next/cache";
-
+import { UTApi } from "uploadthing/server";
+const utapi = new UTApi();
 export async function toggleLive() {
   const session = await auth();
 
@@ -70,9 +71,11 @@ export async function createEvent(formData: FormData) {
   const time = formData.get("time");
   const location = formData.get("location");
   const imageUrl = formData.get("imageUrl");
+  const imageKey = formData.get("imageKey");
 
   if (
     typeof imageUrl !== "string" ||
+    typeof imageKey !== "string" ||
     typeof name !== "string" ||
     typeof date !== "string" ||
     typeof time !== "string" ||
@@ -80,6 +83,10 @@ export async function createEvent(formData: FormData) {
   ) {
     throw new Error("Invalid event data");
   }
+  
+  if (imageUrl.trim() === "" || imageKey.trim() === "") {
+  throw new Error("Event image is required");
+}
 
   await db.orm.public.Event.create({
     name: name.trim(),
@@ -87,6 +94,7 @@ export async function createEvent(formData: FormData) {
     time,
     location: location.trim(),
     imageUrl,
+    imageKey,
   });
 
   revalidatePath("/admin/dashboard");
@@ -104,6 +112,13 @@ export async function deleteEvent(formData: FormData) {
   if (typeof eventId !== "string") {
     throw new Error("Invalid event ID");
   }
+
+  const event = await db.orm.public.Event
+  .where({ id: Number(eventId) })
+  .first();
+  if (event?.imageKey) {
+  await utapi.deleteFiles(event.imageKey);
+}
 
   await db.orm.public.Event
     .where({ id: Number(eventId) })
