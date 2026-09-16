@@ -294,7 +294,7 @@ function formatEventTime(time: string) {
               </div>
             </a> 
 
-            <a href="#" 
+            <a href="https://lafamiliadelrey.churchcenter.com/giving" 
             onClick={() => setMenuOpen(false)}
             className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
 
@@ -417,7 +417,7 @@ function formatEventTime(time: string) {
               : "border-l border-l-transparent pl-5"
           }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
-              Viernes · Fechas Seleccionadas
+              Consulta Nuestras Redes Para Próximas Fechas
             </span>
 
             <span className="block text-2xl font-semibold mt-2">
@@ -435,7 +435,7 @@ function formatEventTime(time: string) {
               : "border-l border-l-transparent pl-5"
           }`}>
             <span className="block text-sm font-semibold tracking-widest text-zinc-500">
-              Viernes · Fechas Seleccionadas
+              Consulta Nuestras Redes Para Próximas Fechas
             </span>
 
             <span className="block text-2xl font-semibold mt-2">
