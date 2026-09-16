@@ -57,3 +57,58 @@ await db.orm.public.SiteSettings
 revalidatePath("/admin/dashboard");
 revalidatePath("/");
 }
+
+export async function createEvent(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  const name = formData.get("name");
+  const date = formData.get("date");
+  const time = formData.get("time");
+  const location = formData.get("location");
+  const imageUrl = formData.get("imageUrl");
+
+  if (
+    typeof imageUrl !== "string" ||
+    typeof name !== "string" ||
+    typeof date !== "string" ||
+    typeof time !== "string" ||
+    typeof location !== "string"
+  ) {
+    throw new Error("Invalid event data");
+  }
+
+  await db.orm.public.Event.create({
+    name: name.trim(),
+    date,
+    time,
+    location: location.trim(),
+    imageUrl,
+  });
+
+  revalidatePath("/admin/dashboard");
+  revalidatePath("/");
+}
+export async function deleteEvent(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  const eventId = formData.get("eventId");
+
+  if (typeof eventId !== "string") {
+    throw new Error("Invalid event ID");
+  }
+
+  await db.orm.public.Event
+    .where({ id: Number(eventId) })
+    .delete();
+
+  revalidatePath("/admin/dashboard");
+  revalidatePath("/");
+}

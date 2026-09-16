@@ -6,3 +6,12 @@ model SiteSettings {
   liveUrl   String?
   updatedAt temporal.updatedAtString()
 }
+
+model Event {
+  id       Int    @id @default(autoincrement())
+  name     String
+  date     String
+  time     String
+  location String
+  imageUrl String
+}

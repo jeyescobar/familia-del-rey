@@ -17,6 +17,7 @@ export default function Home(){
   const [isWheelLocked, setIsWheelLocked] = useState(false);
   const [isLive, setIsLive] = useState(false);
   const [liveUrl, setLiveUrl] = useState<string | null>(null);
+  const [databaseEvents, setDatabaseEvents] = useState<any[]>([]);
  useEffect(() => {
   async function getLiveStatus() {
     try {
@@ -24,6 +25,7 @@ export default function Home(){
       if (!response.ok) {
         return;
       }
+
       const data = await response.json();
       setIsLive(data.isLive);
       setLiveUrl(data.liveUrl);
@@ -39,34 +41,45 @@ export default function Home(){
 }, []);
   
   
-  const events = [
-  {
-    image: "/evento-1.jpg",
-    date: "20 SEP · 7:30 PM",
-    title: "Nombre del evento",
-    details: "Hora · Lugar",
-  },
-  {
-    image: "/evento-2.jpg",
-    date: "FECHA",
-    title: "Nombre del evento",
-    details: "Hora · Lugar",
-  },
-  {
-    image: "/evento-3.jpg",
-    date: "FECHA",
-    title: "Nombre del evento",
-    details: "Hora · Lugar",
-  },
-];
-  const loopEvents = [...events, ...events, ...events];
-  useEffect(() => {
+const loopEvents = [
+  ...databaseEvents,
+  ...databaseEvents,
+  ...databaseEvents,
+]; 
+useEffect(() => {
   document.body.style.overflow = menuOpen ? "hidden" : "";
 
   return () => {
     document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
+  };
+}, [menuOpen]);
+
+useEffect(() => {
+  async function getEvents() {
+    try {
+      const response = await fetch("/api/events");
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      setDatabaseEvents(data);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    }
+  }
+
+  getEvents();
+}, []);
+
+useEffect(() => {
+  if (databaseEvents.length > 1) {
+    setCurrentSlide(databaseEvents.length);
+  }
+}, [databaseEvents.length]);
+
+
   return (
     
     <main className="min-h-screen">
@@ -512,7 +525,35 @@ export default function Home(){
 
               
             </div>
-            
+            {databaseEvents.length === 1 && (
+  <div className="max-w-4xl mx-auto">
+    <div className="relative overflow-hidden aspect-video bg-zinc-800">
+
+      <Image
+        src={databaseEvents[0].imageUrl}
+        alt={databaseEvents[0].name}
+        fill
+        sizes="(max-width: 768px) 100vw, 896px"
+        className="object-cover"
+      />
+    </div>
+
+    <div className="pt-6">
+      <span className="text-sm font-semibold tracking-widest text-zinc-400">
+        {databaseEvents[0].date}
+      </span>
+
+      <h3 className="text-2xl font-bold mt-2">
+        {databaseEvents[0].name}
+      </h3>
+
+      <p className="mt-2 text-zinc-400">
+        {databaseEvents[0].time} · {databaseEvents[0].location}
+      </p>
+    </div>
+  </div>
+)}
+{databaseEvents.length > 1 && (
           <div
             className={`events-track flex items-center gap-2 md:gap-6 ${
               isJumping
@@ -525,21 +566,24 @@ export default function Home(){
               } as React.CSSProperties
             }
               onTransitionEnd={() => {
-                if (currentSlide === 6) {
+                const eventCount = databaseEvents.length;
+
+                if (currentSlide >= eventCount * 2) {
                   setIsJumping(true);
-                  setCurrentSlide(3);
+                  setCurrentSlide(currentSlide - eventCount);
                 }
-                if (currentSlide === 2) {
+
+                if (currentSlide < eventCount) {
                   setIsJumping(true);
-                  setCurrentSlide(5);
+                  setCurrentSlide(currentSlide + eventCount);
                 }
               }}
             >
 
 
               {loopEvents.map((event, index) => {
-                const realIndex = index % events.length;
-                const activeRealIndex = currentSlide % events.length;
+                const realIndex = index % databaseEvents.length;
+                const activeRealIndex = currentSlide % databaseEvents.length;
                 return (
                   <div
                     key={index}
@@ -553,8 +597,8 @@ export default function Home(){
 
               <div className=" relative overflow-hidden aspect-video bg-zinc-800 cursor-pointer hover:opacity-90 transition-opacity duration-300">
                 <Image
-                  src={event.image}
-                  alt="Nombre del evento"
+                  src={event.imageUrl}
+                  alt={event.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
@@ -567,20 +611,20 @@ export default function Home(){
                   </span>
 
                   <h3 className="text-2xl font-bold mt-2">
-                    {event.title}
+                    {event.name}
                   </h3>
 
                   <p className="mt-2 text-zinc-400">
-                    {event.details}
+                    {event.time} · {event.location}
                   </p>
-                  <a className="border-b border-white pb-1 mt-4 inline-block hover:text-zinc-400 transition-colors duration-300 " href="/eventos">VER EVENTO</a>
                 </div>
                 
             </div>
 
             );})}
           </div>
-          </div>
+            )}
+          </div> 
           </div>
         </div>
       </section>
@@ -730,7 +774,7 @@ export default function Home(){
           <div className="mt-12 txt-lg text-center">
             <h3
             
-              className="inline-block border-b border-black pb-1 hover:text-zinc-500 transition-colors duration-300"
+              className="text-lg inline-block border-b border-black pb-1 hover:text-zinc-500 transition-colors duration-300"
             >
               Y MAS...
             </h3>
