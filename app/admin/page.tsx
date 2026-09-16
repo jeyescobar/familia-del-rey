@@ -16,8 +16,11 @@ export default function AdminPage() {
   
 });
 
-if (result?.ok) {
+
+if (!result?.error) {
   window.location.href = "/admin/dashboard";
+} else {
+  alert("Usuario o contraseña incorrectos.");
 }
 
 }
