@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, ChevronDown} from "lucide-react";
+import { MessageCircle , CalendarDays , Users , MapPin , HeartHandshake ,Church, Play, ChevronDown} from "lucide-react";
 import Image from "next/image"
 import { Cormorant_Garamond } from "next/font/google";
 const cormorant = Cormorant_Garamond({
@@ -140,8 +140,10 @@ function formatEventTime(time: string) {
         <div className="max-w-6xl mx-auto flex text-center justify-between">
           <div className="flex items-center gap-4">
             <button
-              className="md:hidden"
-              onClick={() => setMenuOpen(!menuOpen)}
+              type="button"
+              className="md:hidden relative z-50 p-2"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Abrir menú"
             >
               ☰
             </button>
@@ -192,6 +194,7 @@ function formatEventTime(time: string) {
             
         </div>
       </nav>
+      
 
         {/* menu open nav bar */}
       {menuOpen && (
@@ -204,24 +207,6 @@ function formatEventTime(time: string) {
               </button>
 
             <a href="#">INICIO</a>
-
-            <a href="#mensaje" 
-            onClick={() => setMenuOpen(false)}
-            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
-              
-              <div className="flex items-center gap-3">
-                <MessageCircle size={22} />
-                <div>
-                  <span className="text-xl font-semibold">
-                    MENSAJES
-                  </span>
-
-                  <p className="text-sm text-zinc-400 mt-1">
-                    Escucha nuestros mensajes más recientes.
-                  </p>
-                </div>
-              </div>
-            </a>
 
             <a href="#cultos" 
             onClick={() => setMenuOpen(false)}
@@ -240,6 +225,24 @@ function formatEventTime(time: string) {
                 </div>
               </div>
             </a> 
+
+            <a href="#mensaje" 
+            onClick={() => setMenuOpen(false)}
+            className="block p-4 hover:bg-zinc-900 transition-colors duration-10">
+              
+              <div className="flex items-center gap-3">
+                <MessageCircle size={22} />
+                <div>
+                  <span className="text-xl font-semibold">
+                    MENSAJES
+                  </span>
+
+                  <p className="text-sm text-zinc-400 mt-1">
+                    Escucha nuestros mensajes más recientes.
+                  </p>
+                </div>
+              </div>
+            </a>
 
             <a href="#eventos" 
             onClick={() => setMenuOpen(false)}
@@ -508,8 +511,8 @@ function formatEventTime(time: string) {
 
               <div className="absolute inset-0 bg-black/25"></div>
 
-              <span className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full border border-white text-3xl text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
-                ▶
+              <span className="relative z-10 flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full border border-white/80 bg-black/20 text-white backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
+                <Play className="h-6 w-6 md:h-8 md:w-8 fill-current" />
               </span>
             </a>
           <div className="mt-8 max-w-3xl">
