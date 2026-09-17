@@ -512,8 +512,8 @@ function formatEventTime(time: string) {
               <div className="absolute inset-0 bg-black/25"></div>
 
               <span className="relative z-10 flex h-14 w-14 md:h-20 md:w-20 items-center justify-center rounded-full border border-white/80 bg-black/20 text-white backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:text-black">
-                <Play className="h-6 w-6 md:h-8 md:w-8 fill-current" />
-              </span>
+              <Play className="h-6 w-6 md:h-8 md:w-8 fill-current" />
+            </span>
             </a>
           <div className="mt-8 max-w-3xl">
             <span className="text-sm font-semibold tracking-widest text-zinc-500">
