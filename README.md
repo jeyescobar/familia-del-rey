@@ -83,13 +83,3 @@ The application requires environment variables for:
 - Administrator credentials
 - UploadThing
 
-Create a `.env.local` file and configure the required credentials before running the project.
-
-> Never commit `.env.local` or private credentials to the repository.
-
-## Running Locally
-
-Install dependencies:
-
-```bash
-npm install
